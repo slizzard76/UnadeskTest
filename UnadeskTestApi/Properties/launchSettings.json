@@ -1,0 +1,22 @@
+{
+  "profiles": {
+    "UnadeskTestApi": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:44230;http://localhost:44231"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "environmentVariables": {
+        "ASPNETCORE_HTTP_PORTS": "80"
+      },
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  }
+}

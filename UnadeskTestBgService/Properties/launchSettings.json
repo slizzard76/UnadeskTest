@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "UnadeskTestBgService": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

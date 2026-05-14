@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/BusinessLogic/">
+    <Project Path="BusinessLogic/UnadeskTestApi.Repositories/UnadeskTest.Repositories.csproj" Id="40cd4b94-b474-4826-a135-f94716db033c" />
+    <Project Path="BusinessLogic/UnadeskTestApi.Services/UnadeskTest.Services.csproj" Id="3c4f7c7c-0d54-4c16-b73c-180d39ceb3e3" />
+  </Folder>
+  <Folder Name="/DataAccess/">
+    <Project Path="DataAccess/DataAccess.Context/DataAccess.Context.csproj" Id="41b18524-9336-4c0a-a052-e94d6ab95857" />
+    <Project Path="DataAccess/DataAccess.Models/DataAccess.Models.csproj" />
+  </Folder>
+  <Project Path="Bus.Shared/Bus.Shared.csproj" Id="730014ac-8dd2-4ff2-af2c-ec1e7de6c8b9" />
+  <Project Path="Common/Common/Common.csproj" Id="782b4976-253b-46d8-9fc4-a5ab42bf6d39" />
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+  <Project Path="UnadeskTestApi/UnadeskTestApi.csproj" />
+  <Project Path="UnadeskTestBgService/UnadeskTestBgService.csproj" />
+</Solution>

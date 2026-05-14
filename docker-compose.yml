@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+
+  # 1. PostgreSQL Database
+  postgres:
+    image: postgres:14
+    container_name: pdf_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: pdfdb
+    volumes:
+      - unadesk_test:/var/lib/postgresql/data
+
+  # 2. RabbitMQ Message Broker
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: pdf_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  # 3. API Gateway Service
+  api_gateway:
+    build:
+      context: ./UnadeskTestApi
+      dockerfile: Dockerfile
+    container_name: api_gateway
+    environment:
+      # Настройки подключения
+      CONNECTION_STRING: "Host=localhost;Username=user;Password=password;Database=pdfdb"
+      RABBITMQ_HOST: rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    ports:
+      - "5001:8080"
+    volumes:
+      - C:/Temp:/app/win/uploads
+
+  # 4. Background Worker Service
+  worker:
+    build:
+      context: ./UnadeskTestBgService
+      dockerfile: Dockerfile
+    container_name: background_worker
+    environment:
+      # Настройки подключения
+      CONNECTION_STRING: "Host=postgres;Username=user;Password=password;Database=pdfdb"
+      RABBITMQ_HOST: rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+    volumes:
+      - C:/Temp:/app/win/uploads
+
+
+volumes:
+  unadesk_test:
+
+   

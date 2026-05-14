@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Bus.Shared\Bus.Shared.csproj" />
+    <ProjectReference Include="..\..\Common\Common\Common.csproj" />
+    <ProjectReference Include="..\..\DataAccess\DataAccess.Models\DataAccess.Models.csproj" />
+    <ProjectReference Include="..\UnadeskTestApi.Repositories\UnadeskTest.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>
