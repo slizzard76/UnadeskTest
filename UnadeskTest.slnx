@@ -8,7 +8,7 @@
     <Project Path="DataAccess/DataAccess.Models/DataAccess.Models.csproj" />
   </Folder>
   <Project Path="Bus.Shared/Bus.Shared.csproj" Id="730014ac-8dd2-4ff2-af2c-ec1e7de6c8b9" />
-  <Project Path="Common/Common/Common.csproj" Id="782b4976-253b-46d8-9fc4-a5ab42bf6d39" />
+  <Project Path="Common/Common.csproj" Id="782b4976-253b-46d8-9fc4-a5ab42bf6d39" />
   <Project Path="docker-compose.dcproj">
     <Build />
   </Project>
