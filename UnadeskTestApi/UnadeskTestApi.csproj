@@ -20,7 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Bus.Shared\Bus.Shared.csproj" />
     <ProjectReference Include="..\BusinessLogic\UnadeskTestApi.Services\UnadeskTest.Services.csproj" />
-    <ProjectReference Include="..\Common\Common\Common.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.Models\DataAccess.Models.csproj" />
   </ItemGroup>
 
