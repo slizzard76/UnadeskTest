@@ -2,7 +2,6 @@ version: '3.8'
 
 services:
 
-  # 1. PostgreSQL Database
   postgres:
     image: postgres:14
     container_name: pdf_postgres
@@ -15,7 +14,6 @@ services:
     volumes:
       - unadesk_test:/var/lib/postgresql/data
 
-  # 2. RabbitMQ Message Broker
   rabbitmq:
     image: rabbitmq:3.11-management
     container_name: pdf_rabbitmq
@@ -26,14 +24,12 @@ services:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
 
-  # 3. API Gateway Service
   api_gateway:
     build:
       context: ./UnadeskTestApi
       dockerfile: Dockerfile
     container_name: api_gateway
     environment:
-      # Настройки подключения
       CONNECTION_STRING: "Host=localhost;Username=user;Password=password;Database=pdfdb"
       RABBITMQ_HOST: rabbitmq
     depends_on:
@@ -44,14 +40,12 @@ services:
     volumes:
       - C:/Temp:/app/win/uploads
 
-  # 4. Background Worker Service
   worker:
     build:
       context: ./UnadeskTestBgService
       dockerfile: Dockerfile
     container_name: background_worker
     environment:
-      # Настройки подключения
       CONNECTION_STRING: "Host=postgres;Username=user;Password=password;Database=pdfdb"
       RABBITMQ_HOST: rabbitmq
     depends_on:
@@ -59,7 +53,6 @@ services:
       - rabbitmq
     volumes:
       - C:/Temp:/app/win/uploads
-
 
 volumes:
   unadesk_test:

@@ -15,7 +15,7 @@ namespace UnadeskTest.BusinessLogic.Repositories
         }
 
         ///<inheritdoc/>
-        public async Task<Guid> CreateNewDocumentAsync(string originalFileName, string filePath, CancellationToken cancellationToken)
+        public async Task<Guid> CreateNewDocumentAsync(string originalFileName, CancellationToken cancellationToken)
         {
             var newDoc = new PdfDocument
             {
@@ -33,9 +33,15 @@ namespace UnadeskTest.BusinessLogic.Repositories
         ///<inheritdoc/>
         public async Task<IEnumerable<PdfDocument>> GetAllDocumentsAsync(CancellationToken cancellationToken)
         {
-            // Извлекает все записи из таблицы Documents.
-            var result = await _context.Documents.ToListAsync(cancellationToken);
-
+            // Извлекает все записи из таблицы Documents. Обрезаем контент для читаемости результата.
+            var result = await _context.Documents.
+                Select(x => new PdfDocument()
+                {
+                    Id = x.Id,
+                    FileStatus = x.FileStatus,
+                    OriginalFileName = x.OriginalFileName,
+                    ProcessedOn = x.ProcessedOn,
+                }).ToListAsync(cancellationToken);
             return result;
         }
 

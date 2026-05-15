@@ -25,13 +25,6 @@ public class UnadeskDbContext : DbContext
                   .IsRequired()
                   .HasMaxLength(255);
 
-            /*
-            // Настройка свойства Status: обязательно и ограничение длины
-            entity.Property(d => d.Status.)
-                  .IsRequired()
-                  .HasMaxLength(50);
-            */
-
             // Настройка свойства TextContent: использование типа TEXT для хранения содержимого
             entity.Property(d => d.TextContent)
                   .HasColumnType("TEXT"); 

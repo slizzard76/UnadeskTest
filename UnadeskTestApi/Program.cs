@@ -7,8 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
 using UnadeskTest.BusinessLogic.Repositories;
 using UnadeskTest.BusinessLogic.Services;
-using UnadeskTest.Common;
-
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -29,13 +29,7 @@ namespace UnadeskTest.BusinessLogic.Services
             _mqProducer = mqProducer;
         }
 
-        /// <summary>
-        /// Создает новый документ: сохраняет файл, создает запись в БД и отправляет задачу в очередь.
-        /// </summary>
-        /// <param name="fileName">Имя файла.</param>
-        /// <param name="fileContent">Содержимое файла в виде массива байтов.</param>
-        /// <param name="cancellationToken">Токен отмены операции.</param>
-        /// <returns>GUID созданного документа.</returns>
+        ///<inheritdoc/>
         public async Task<Guid> CreateNewDocumentAsync(string fileName, byte[] fileContent, CancellationToken cancellationToken)
         {
             // 1. Сохранение файла локально
@@ -55,7 +49,7 @@ namespace UnadeskTest.BusinessLogic.Services
             }
 
             // 2. Создание записи в БД со статусом 'Pending'
-            var documentId = await _documentRepository.CreateNewDocumentAsync(fileName, savePath, cancellationToken);
+            var documentId = await _documentRepository.CreateNewDocumentAsync(fileName, cancellationToken);
 
             // 3. Отправка сообщения в очередь для асинхронной обработки
             var job = new ProcessingJob { DocumentId = documentId, FilePath = savePath };
@@ -64,11 +58,7 @@ namespace UnadeskTest.BusinessLogic.Services
             return documentId;
         }
 
-        /// <summary>
-        /// Получает список всех документов в формате DTO.
-        /// </summary>
-        /// <param name="cancellationToken">Токен отмены операции.</param>
-        /// <returns>Коллекция DTO документов.</returns>
+        ///<inheritdoc/>
         public async Task<IEnumerable<PdfDocumentDto>> GetAllDocumentsAsync(CancellationToken cancellationToken)
         {
             // Получение сырых данных из репозитория
@@ -90,36 +80,20 @@ namespace UnadeskTest.BusinessLogic.Services
             return list;
         }
 
-        /// <summary>
-        /// Получает детальную информацию о документе по его ID.
-        /// </summary>
-        /// <param name="id">Идентификатор документа.</param>
-        /// <param name="cancellationToken">Токен отмены операции.</param>
-        /// <returns>Объект PdfDocument с деталями.</returns>
+        ///<inheritdoc/>
         public async Task<PdfDocument> GetDocumentDetailsAsync(Guid id, CancellationToken cancellationToken)
         {
             var result = await _documentRepository.GetDocumentDetailsAsync(id, cancellationToken); 
             return result;
         }
 
-        /// <summary>
-        /// Обновляет статус документа на 'Completed' (Завершено).
-        /// </summary>
-        /// <param name="id">Идентификатор документа.</param>
-        /// <param name="status">Статус (обычно 'Completed').</param>
-        /// <param name="cancellationToken">Токен отмены операции.</param>
+        ///<inheritdoc/>
         public async Task UpdateCompletedAsync(Guid id, string status, CancellationToken cancellationToken)
         {
             await _documentRepository.UpdateCompletedAsync(id, status, cancellationToken);
         }
 
-        /// <summary>
-        /// Обновляет общий статус документа.
-        /// </summary>
-        /// <param name="id">Идентификатор документа.</param>
-        /// <param name="status">Новый статус документа.</param>
-        /// <param name="cancellationToken">Токен отмены операции.</param>
-        /// <returns>True, если обновление прошло успешно.</returns>
+        ///<inheritdoc/>
         public async Task<bool> UpdateStatusAsync(Guid id, FileStatus status, CancellationToken cancellationToken)
         {
             return await _documentRepository.UpdateStatusAsync(id, status, cancellationToken);

@@ -30,8 +30,6 @@ var app = Host.CreateDefaultBuilder(args)
         //Для graceful shutdown
         services.Configure<HostOptions>(opts => opts.ShutdownTimeout = TimeSpan.FromMinutes(5));
 
-
-        //services.AddScoped<IRabbitConfig, RabbitConfiguration>();
         services.Configure<RabbitConfiguration>(rabbitConfig => hostContext.Configuration.GetSection("Rabbit").Bind(rabbitConfig));
         services.AddScoped<IMessageQueueProducer, MessageQueueProducer>();
         services.AddSingleton<IRabbitMqService, RabbitMqService>();

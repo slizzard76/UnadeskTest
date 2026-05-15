@@ -38,7 +38,7 @@ namespace UnadeskTest.Workers
                 // 1. Десериализация Payload: Преобразование сырого тела сообщения в объект ProcessingJob.
                 var job = JsonSerializer.Deserialize<ProcessingJob>(message.Body);
 
-                // 2. Проверка существования файла: Критическая проверка, чтобы избежать исключений I/O.
+                // 2. Проверка существования файла чтобы избежать исключений I/O.
                 if (!File.Exists(job.FilePath))
                 {
                     Console.WriteLine($"Error: File not found at path {job.FilePath}");

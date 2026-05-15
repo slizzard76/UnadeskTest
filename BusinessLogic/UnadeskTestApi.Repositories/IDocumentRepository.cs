@@ -11,11 +11,11 @@ namespace UnadeskTest.BusinessLogic.Repositories
         /// <summary>
         /// Создает новый документ в системе.
         /// </summary>
-        /// <param name="fileName">Имя файла документа.</param>
+        /// <param name="originalFileName">Имя файла документа.</param>
         /// <param name="savePath">Путь для сохранения документа.</param>
         /// <param name="cancellation">Токен отмены операции.</param>
         /// <returns>Задача, возвращающая уникальный идентификатор (Guid) нового документа.</returns>
-        Task<Guid> CreateNewDocumentAsync(string fileName, string savePath, CancellationToken cancellationToken);
+        Task<Guid> CreateNewDocumentAsync(string originalFileName, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получает детали конкретного документа по его идентификатору.
